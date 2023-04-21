@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gender Check</title>
+    <style>
+      body {
+        background-color: ghostwhite;
+      }
+      #myText {
+        padding: 8px;
+        border-radius: 10px;
+        background: transparent;
+      }
+      .btn {
+        margin-top: 10px;
+        padding: 5px;
+        border-radius: 10px;
+        background: transparent;
+      }
+      .result {
+        margin-top: 20px;
+      }
+      #demo {
+        padding: 10px;
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body style="text-align: center">
+    <h1 style="color: green; font-size: 30px;">ignoTusX7</h1>
+    <h2>This site check you gender</h1>
+    <div class="input1">
+      Name:<input type="text" id="myText" placeholder="Type yout name here" />
+      <br/>
+      <button type="button" class="btn" onclick="myFunction()">Try it</button>
+      <div class="result">
+        <input type="text" disabled id="demo" />
+      </div>
+    </div>
+    <script>
+          function myFunction() {
+            var name = document.getElementById("myText").value;
+
+            fetch(`https://api.genderize.io/?name=${name}`)
+      .then((apidata) => {
+        return apidata.json();
+      })
+      .then((actualData) => {
+        const sex = actualData.gender;
+        document.getElementById("demo").value =  sex.toUpperCase() ;
+      })
+      .catch((error) => {
+        console.log(`The error: ${error}`);
+      });
+
+
+          }
+    </script>
+  </body>
+</html>
